@@ -1,4 +1,1 @@
-# Ignore output files.
-path-tracer
-*.hi
-*.o
+/dist-newstyle/

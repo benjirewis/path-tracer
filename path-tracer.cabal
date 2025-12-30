@@ -1,0 +1,14 @@
+cabal-version:      3.0
+name:               path-tracer
+version:            0.1.0.0
+author:             Benjamin Rewis
+maintainer:         benjirewis@me.com
+build-type:         Simple
+common warnings
+    ghc-options: -Wall
+executable path-tracer
+    import:           warnings
+    main-is:          Main.hs
+    build-depends:    base ^>=4.18.3.0
+    hs-source-dirs:   app
+    default-language: Haskell2010
