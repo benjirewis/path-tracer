@@ -1,18 +1,27 @@
 module Main where
 
-import System.IO
-import Vec3
+import Color (color, writeColor)
+import System.IO (IOMode (WriteMode), hClose, hPutStrLn, openFile)
+import Text.Printf (printf)
+
+filePath :: String
+filePath = "images/test.ppm"
+
+imageWidth :: Double
+imageWidth = 256.0
+
+imageHeight :: Double
+imageHeight = 256.0
 
 main :: IO ()
 main = do
-  handle <- openFile "images/test.ppm" WriteMode
+  handle <- openFile filePath WriteMode
 
-  let imageWidth = 256
-      imageHeight = 256
+  hPutStrLn handle $ printf "P3\n%.0f %.0f\n255" imageWidth imageHeight
 
-  hPutStrLn handle ("P3\n" ++ show imageWidth ++ " " ++ show imageHeight ++ "\n255")
+  -- Create "Hello, World!" gradient graphic.
+  let colors = [color (r / imageWidth) (g / imageHeight) 0 | g <- [0 .. imageWidth - 1], r <- [0 .. imageHeight - 1]]
 
-  let pixels = [Vec3 r g 0 | g <- [0 .. imageWidth - 1], r <- [0 .. imageHeight - 1]]
-  hPutStr handle $ unlines $ map show pixels
+  mapM_ (writeColor handle) colors
 
   hClose handle
