@@ -9,6 +9,7 @@ common warnings
 executable path-tracer
     import:           warnings
     main-is:          Main.hs
+    other-modules:    Vec3
     build-depends:    base ^>=4.18.3.0
     hs-source-dirs:   app
     default-language: Haskell2010
