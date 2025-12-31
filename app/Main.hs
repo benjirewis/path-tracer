@@ -20,7 +20,7 @@ main = do
   hPutStrLn handle $ printf "P3\n%.0f %.0f\n255" imageWidth imageHeight
 
   -- Create "Hello, World!" gradient graphic.
-  let colors = [color (r / imageWidth) (g / imageHeight) 0 | g <- [0 .. imageWidth - 1], r <- [0 .. imageHeight - 1]]
+  let colors = [color (r / (imageWidth - 1)) (g / (imageHeight - 1)) 0 | g <- [0 .. imageWidth - 1], r <- [0 .. imageHeight - 1]]
 
   mapM_ (writeColor handle) colors
 
